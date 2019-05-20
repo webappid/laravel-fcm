@@ -41,8 +41,8 @@ class FcmServiceTest extends TestCase
     
     public function dummyProjectKey(): FcmProject
     {
-        $serverKey = 'AAAAQh064PI:APA91bGCEvNkdccRak2VwJtJgj0FphXil6i5oW_6cs8JZqTs1wKaa5IEqVca1OJ5YoN7p2RzZfWpaUat2S70rsV9Up6eVTe6xTpHYlvOTmU9ch8kBbhYvoYL5932yoB7vqQwaE_NFov3';
-        $projectName = 'aira-web';
+        $serverKey = '';
+        $projectName = '';
         $projectParam = new ProjectParam();
         $projectParam->setName($projectName);
         $projectParam->setUserId('1');
@@ -53,7 +53,7 @@ class FcmServiceTest extends TestCase
     public function dummyBlastClient(): array
     {
         $registration_ids = [];
-        $registration_ids[] = 'fcMZCCS6kKU:APA91bE5ozFiGKm7zbMRBc4UqZ7mmNnQ8AANuXE3VN7slkRdXD6lqSXCGx1TBRrxqRplhJE1IGUILKBuAs5bqamzLdlfrwFSpCYHOAz_9JGGeVsxLRtyzxsHEDKE7AkNS62Kl2ZvPTV8';
+        $registration_ids[] = '';
         return $registration_ids;
     }
     
