@@ -5,7 +5,7 @@
  * Time: 09:40
  */
 
-namespace Tests\Unit\Repositories;
+namespace WebAppId\Fcm\Tests\Unit\Repositories;
 
 use WebAppId\Fcm\Models\FcmProject;
 use WebAppId\Fcm\Repositories\FcmProjectRepository;

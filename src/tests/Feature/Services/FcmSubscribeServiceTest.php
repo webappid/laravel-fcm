@@ -5,7 +5,7 @@
  * Time: 18:26
  */
 
-namespace Tests\Feature\Services;
+namespace WebAppId\Fcm\Tests\Feature\Services;
 
 use WebAppId\Fcm\Services\FcmSubscribeService;
 use WebAppId\Fcm\Tests\TestCase;

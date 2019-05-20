@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Services;
+namespace WebAppId\Fcm\Tests\Feature\Services;
 
 use WebAppId\Fcm\Services\FcmProjectService;
 use WebAppId\Fcm\Tests\TestCase;
