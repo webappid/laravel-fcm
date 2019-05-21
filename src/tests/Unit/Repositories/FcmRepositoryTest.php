@@ -59,8 +59,8 @@ class FcmRepositoryTest extends TestCase
     
     public function dummyProjectKey(): FcmProject
     {
-        $serverKey = 'AAAAQh064PI:APA91bGCEvNkdccRak2VwJtJgj0FphXil6i5oW_6cs8JZqTs1wKaa5IEqVca1OJ5YoN7p2RzZfWpaUat2S70rsV9Up6eVTe6xTpHYlvOTmU9ch8kBbhYvoYL5932yoB7vqQwaE_NFov3';
-        $projectName = 'laravel-fcm';
+        $serverKey = '';
+        $projectName = '';
         $projectParam = new ProjectParam();
         $projectParam->setName($projectName);
         $projectParam->setUserId('1');
@@ -71,7 +71,7 @@ class FcmRepositoryTest extends TestCase
     public function dummyBlastClient(): array
     {
         $registration_ids = [];
-        $registration_ids[] = 'cFQRPmEADdI:APA91bHV2eG9h_J2q_VJRck5srZZ37En_3wL7MBKca_pPmMAFMtUFuXfyAYFp3F0iaF1McA0xzsJrYE6rKG8wJxQGJWvKYHoYuOfisrRq1yryZuxwgfStLOy6SeLI2XlHC0oyE0yYLCc';
+        $registration_ids[] = '';
         return $registration_ids;
     }
     
