@@ -22,21 +22,45 @@ class FcmService extends BaseService implements FcmServiceContract
      * @param array $registrationIds
      * @param FcmRepository $fcmRepository
      * @param FcmResponse $fcmResponse
-     * @return FcmResponse
+     * @param array $data
+     * @return void
      */
-    public function sendBlast(FcmSendParam $fcmSendParam, array $registrationIds, FcmRepository $fcmRepository, FcmResponse $fcmResponse): FcmResponse
+    public function sendBlast(FcmSendParam $fcmSendParam,
+                              array $registrationIds,
+                              FcmRepository $fcmRepository,
+                              FcmResponse $fcmResponse,
+                              array $data = []): void
     {
-        $result = $this->getContainer()->call([$fcmRepository,'sendBlast'],['fcmSendParam' => $fcmSendParam, 'registrationIds' => $registrationIds]);
+        $this->getContainer()->call([$fcmRepository, 'sendBlast'],
+            [
+                'fcmSendParam' => $fcmSendParam,
+                'registrationIds' => $registrationIds,
+                'data' => $data
+            ]);
         
-        if($result->success==1){
-            $fcmResponse->setStatus(true);
-            $fcmResponse->setMessage('Send data success');
-            $fcmResponse->setResult($result);
-        }else{
-            $fcmResponse->setStatus(false);
-            $fcmResponse->setMessage('Send data failed');
-        }
-        
-        return $fcmResponse;
+    }
+    
+    /**
+     * @param FcmSendParam $fcmSendParam
+     * @param string $topic
+     * @param FcmRepository $fcmRepository
+     * @param FcmResponse $fcmResponse
+     * @param array $data
+     * @return void
+     */
+    public function sendToTopic(FcmSendParam $fcmSendParam, string $topic, FcmRepository $fcmRepository, FcmResponse $fcmResponse, array $data = []): void
+    {
+        $this->getContainer()->call([$fcmRepository, 'sendToTopic'], ['fcmSendParam' => $fcmSendParam, 'topic' => $topic]);
+    }
+    
+    /**
+     * @param string $token
+     * @param string $topic
+     * @param FcmRepository $fcmRepository
+     * @return void
+     */
+    public function subscribeTopic(string $token, string $topic, FcmRepository $fcmRepository): void
+    {
+        $this->getContainer()->call([$fcmRepository, 'subscribeTopic'], ['token' => $token, 'topic' => $topic]);
     }
 }

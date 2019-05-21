@@ -28,11 +28,6 @@ class FcmSendParam
     private $url_action;
     
     /**
-     * @var array
-     */
-    private $custom;
-    
-    /**
      * @return string
      */
     public function getTitle(): string
@@ -94,21 +89,5 @@ class FcmSendParam
     public function setUrlAction(string $url_action): void
     {
         $this->url_action = $url_action;
-    }
-    
-    /**
-     * @return array
-     */
-    public function getCustom(): ?array
-    {
-        return $this->custom;
-    }
-    
-    /**
-     * @param array $custom
-     */
-    public function setCustom(array $custom): void
-    {
-        $this->custom = $custom;
     }
 }

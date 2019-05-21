@@ -59,8 +59,8 @@ class FcmRepositoryTest extends TestCase
     
     public function dummyProjectKey(): FcmProject
     {
-        $serverKey = '';
-        $projectName = '';
+        $serverKey = 'AAAAQh064PI:APA91bGCEvNkdccRak2VwJtJgj0FphXil6i5oW_6cs8JZqTs1wKaa5IEqVca1OJ5YoN7p2RzZfWpaUat2S70rsV9Up6eVTe6xTpHYlvOTmU9ch8kBbhYvoYL5932yoB7vqQwaE_NFov3';
+        $projectName = 'laravel-fcm';
         $projectParam = new ProjectParam();
         $projectParam->setName($projectName);
         $projectParam->setUserId('1');
@@ -71,7 +71,7 @@ class FcmRepositoryTest extends TestCase
     public function dummyBlastClient(): array
     {
         $registration_ids = [];
-        $registration_ids[] = '';
+        $registration_ids[] = 'cFQRPmEADdI:APA91bHV2eG9h_J2q_VJRck5srZZ37En_3wL7MBKca_pPmMAFMtUFuXfyAYFp3F0iaF1McA0xzsJrYE6rKG8wJxQGJWvKYHoYuOfisrRq1yryZuxwgfStLOy6SeLI2XlHC0oyE0yYLCc';
         return $registration_ids;
     }
     
@@ -83,12 +83,45 @@ class FcmRepositoryTest extends TestCase
         $this->dummyProjectKey();
         $registration_ids = $this->dummyBlastClient();
         $dummy = $this->dummy();
-        $result = $this->getContainer()->call([$this->fcmRepository, 'sendBlast'],
+        $results = $this->getContainer()->call([$this->fcmRepository, 'sendBlast'],
             [
                 'fcmSendParam' => $dummy,
-                'registrationIds' => $registration_ids
+                'registrationIds' => $registration_ids,
+                'data' => ["key" => "value"]
             ]);
         
-        self::assertEquals(1, $result->success);
+        foreach ($results as $result) {
+            self::assertEquals(1, $result->success);
+        }
+    }
+    
+    public function testSendTopic(): void
+    {
+        $this->dummyProjectKey();
+        $dummy = $this->dummy();
+        $results = $this->getContainer()->call([$this->fcmRepository, 'sendToTopic'],
+            [
+                'fcmSendParam' => $dummy,
+                'topic' => 'webappid-laravel-fcm',
+                'data' => ['key' => 'value']
+            ]);
+        
+        foreach ($results as $result) {
+            self::assertGreaterThanOrEqual(1, $result->message_id);
+        }
+    }
+    
+    public function testSubscribeTopic(): void
+    {
+        $this->dummyProjectKey();
+        $results = $this->getContainer()->call([$this->fcmRepository, 'subscribeTopic'],
+            [
+                'token' => 'webappid-laravel-fcm',
+                'topic' => $this->getFaker()->text
+            ]);
+        
+        foreach ($results as $result) {
+            self::assertGreaterThanOrEqual(200, $result);
+        }
     }
 }

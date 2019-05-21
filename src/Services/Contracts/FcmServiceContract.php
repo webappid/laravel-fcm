@@ -25,10 +25,36 @@ interface FcmServiceContract
      * @param array $registrationIds
      * @param FcmRepository $fcmRepository
      * @param FcmResponse $fcmResponse
-     * @return FcmResponse
+     * @param array $data
+     * @return void
      */
     public function sendBlast(FcmSendParam $fcmSendParam,
                               array $registrationIds,
                               FcmRepository $fcmRepository,
-                              FcmResponse $fcmResponse): FcmResponse;
+                              FcmResponse $fcmResponse,
+                              array $data = []): void ;
+    
+    /**
+     * @param FcmSendParam $fcmSendParam
+     * @param string $topic
+     * @param FcmRepository $fcmRepository
+     * @param FcmResponse $fcmResponse
+     * @param array $data
+     * @return void
+     */
+    public function sendToTopic(FcmSendParam $fcmSendParam,
+                                string $topic,
+                                FcmRepository $fcmRepository,
+                                FcmResponse $fcmResponse,
+                                array $data = []): void ;
+    
+    /**
+     * @param string $token
+     * @param string $topic
+     * @param FcmRepository $fcmRepository
+     * @return void
+     */
+    public function subscribeTopic(string $token,
+                                   string $topic,
+                                   FcmRepository $fcmRepository): void ;
 }

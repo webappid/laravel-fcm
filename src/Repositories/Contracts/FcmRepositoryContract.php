@@ -8,7 +8,6 @@
 namespace WebAppId\Fcm\Repositories\Contracts;
 
 
-use WebAppId\DDD\Tools\PopoTools;
 use WebAppId\Fcm\Models\FcmProject;
 use WebAppId\Fcm\Services\Params\FcmSendParam;
 
@@ -21,11 +20,33 @@ interface FcmRepositoryContract
 {
     /**
      * @param FcmSendParam $fcmSendParam
+     * @param array $data
      * @param array $registrationIds
      * @param FcmProject $fcmProject
-     * @return object
+     * @return array
      */
     public function sendBlast(FcmSendParam $fcmSendParam,
                               array $registrationIds,
-                              FcmProject $fcmProject): object ;
+                              FcmProject $fcmProject,
+                              array $data): array;
+    
+    /**
+     * @param FcmSendParam $fcmSendParam
+     * @param string $topic
+     * @param FcmProject $fcmProject
+     * @param array $data
+     * @return array
+     */
+    public function sendToTopic(FcmSendParam $fcmSendParam,
+                                string $topic,
+                                FcmProject $fcmProject,
+                                array $data = []): array;
+    
+    /**
+     * @param string $token
+     * @param string $topic
+     * @param FcmProject $fcmProject
+     * @return array
+     */
+    public function subscribeTopic(string $token, string $topic, FcmProject $fcmProject): array;
 }
