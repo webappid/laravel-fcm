@@ -13,27 +13,27 @@ class FcmSubscribeParam
     /**
      * @var int
      */
-    private $owner_id;
+    public $owner_id;
     /**
      * @var int
      */
-    private $fcm_project_id;
+    public $fcm_project_id;
     /**
      * @var string
      */
-    private $token;
+    public $token;
     /**
      * @var string
      */
-    private $active;
+    public $active;
     /**
      * @var string
      */
-    private $agent;
+    public $agent;
     /**
      * @var int
      */
-    private $user_id;
+    public $user_id;
     
     
     /**

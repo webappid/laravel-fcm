@@ -13,18 +13,16 @@ class ProjectParam
     /**
      * @var string
      */
-    private $name;
+    public $name;
     /**
      * @var string
      */
-    private $server_key;
+    public $server_key;
     
     /**
      * @var integer
      */
-    private $user_id;
-    
-    
+    public $user_id;
     
     
     /**

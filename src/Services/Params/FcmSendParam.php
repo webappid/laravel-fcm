@@ -13,19 +13,19 @@ class FcmSendParam
     /**
      * @var string
      */
-    private $title;
+    public $title;
     /**
      * @var string
      */
-    private $body;
+    public $body;
     /**
      * @var string
      */
-    private $icon;
+    public $icon;
     /**
      * @var string
      */
-    private $url_action;
+    public $url_action;
     
     /**
      * @return string

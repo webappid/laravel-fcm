@@ -7,11 +7,8 @@
 
 namespace WebAppId\Fcm\Tests\Feature\Services;
 
-use WebAppId\Fcm\Models\FcmProject;
 use WebAppId\Fcm\Repositories\FcmProjectRepository;
 use WebAppId\Fcm\Services\FcmService;
-use WebAppId\Fcm\Services\Params\FcmSendParam;
-use WebAppId\Fcm\Services\Params\ProjectParam;
 use WebAppId\Fcm\Tests\TestCase;
 use WebAppId\Fcm\Tests\Unit\Repositories\FcmRepositoryTest;
 
