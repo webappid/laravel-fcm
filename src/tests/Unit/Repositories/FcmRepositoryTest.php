@@ -59,8 +59,8 @@ class FcmRepositoryTest extends TestCase
     
     public function dummyProjectKey(): FcmProject
     {
-        $serverKey = '';
-        $projectName = '';
+        $serverKey = 'AAAAWktC7mo:APA91bETc1zEcJ0YXrOeNcMkJ1deRba_CwsEOBi4Igbehxn7PQNHPfbPpZ1d_JJjYfPk4VHZxueSWAMhfv3eYBenwrpI2VzoHz3ECtieXr3oPf1Cuehpa9eye5kZp5d0HnwGa0Jd2GhV';
+        $projectName = 'gost-protocol';
         $projectParam = new ProjectParam();
         $projectParam->setName($projectName);
         $projectParam->setUserId('1');
@@ -71,7 +71,7 @@ class FcmRepositoryTest extends TestCase
     public function dummyBlastClient(): array
     {
         $registration_ids = [];
-        $registration_ids[] = '';
+        $registration_ids[] = 'esc2gettCBk:APA91bHoZBmXfgb3SRs30rmoVbSTEi4pU-XFMDEMFDdYe8s67ypMt7Wgyv2IpJ_dMHv9KtYr5sfbP3SfJuooKkLk3gpd-9vZNZ-fr5F9lm2ahBmJkW4_Y8tfqIHAsOxpV5pQPWFl1hPB';
         return $registration_ids;
     }
     
