@@ -19,6 +19,8 @@ class CreateFcmProjectsTable extends Migration
             $table->string('server_key',191)->nullable(false)->comment('server key in the firebase.io');
             $table->unsignedInteger('user_id')->nullable(false)->comment('relation to users table');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
     

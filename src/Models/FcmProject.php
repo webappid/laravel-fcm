@@ -5,6 +5,7 @@ namespace WebAppId\Fcm\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @author: Dyan Galih<dyan.galih@gmail.com> https://dyangalih.com
@@ -17,7 +18,8 @@ class FcmProject extends Model
     protected $fillable = ['id', 'name', 'server_key'];
     protected $hidden = ['user_id', 'created_at', 'updated_at'];
     
-    public function subscribes(){
+    public function subscribes(): HasMany
+    {
         return $this->hasMany(FcmSubscribe::class, 'fcm_project_id');
     }
 }

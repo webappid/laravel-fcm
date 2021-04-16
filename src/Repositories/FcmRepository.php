@@ -46,14 +46,15 @@ class FcmRepository implements FcmRepositoryContract
         
         return $this->sendBlastFcm($fcmSendParam, $payloads, $fcmProject, $data);
     }
-    
+
     /**
      * @param $fcmSendParam
      * @param $payloads
      * @param FcmProject $fcmProject
+     * @param $data
      * @return array
      */
-    private function sendBlastFcm($fcmSendParam, $payloads, FcmProject $fcmProject, $data)
+    private function sendBlastFcm($fcmSendParam, $payloads, FcmProject $fcmProject, $data): array
     {
         $pt = new PopoTools();
         if (count($data) > 0) {
