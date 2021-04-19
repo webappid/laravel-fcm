@@ -3,33 +3,33 @@
  * Created by LazyCrud - @DyanGalih <dyan.galih@gmail.com>
  */
 
-namespace WebAppId\Fcm\Responses;
+namespace WebAppId\Fcm\Repositories\Requests;
 
 /**
- * @author:
- * Date: 02:08:14
+ * @author: 
+ * Date: 02:03:12
  * Time: 2021/04/18
  * Class FcmProjectRepositoryRequest
- * @package WebAppId\Fcm\Responses
+ * @package WebAppId\Fcm\Repositories\Requests
  */
-class FcmProjectResponse
+class FcmProjectRepositoryRequest
 {
-
+    
     /**
      * @var string
      */
     public $name;
-
-
+                
+        
     /**
      * @var string
      */
     public $server_key;
-
-
+                
+        
     /**
-     * @var string
+     * @var int
      */
-    public $user_name;
-
+    public $user_id;
+                
 }

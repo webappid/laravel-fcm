@@ -5,19 +5,19 @@
 
 namespace WebAppId\Fcm\Repositories;
 
-use WebAppId\Fcm\Repositories\Contracts\FcmProjectRepositoryContract;
-use WebAppId\Fcm\Repositories\FcmProjectRepositoryTrait;
+use WebAppId\Fcm\Repositories\Contracts\FcmLogRepositoryContract;
+use WebAppId\Fcm\Repositories\FcmLogRepositoryTrait;
 
 /**
  * @author: 
- * Date: 02:03:24
- * Time: 2021/04/18
- * Class FcmProjectRepository
+ * Date: 05:49:30
+ * Time: 2021/04/19
+ * Class FcmLogRepository
  * @package WebAppId\Fcm\Repositories
  */
-class FcmProjectRepository implements FcmProjectRepositoryContract
+class FcmLogRepository implements FcmLogRepositoryContract
 {
-    use FcmProjectRepositoryTrait;
+    use FcmLogRepositoryTrait;
 
     /**
      * @var array

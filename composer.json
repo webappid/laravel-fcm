@@ -1,48 +1,51 @@
 {
-  "name": "webappid/laravel-fcm",
-  "description": "Laravel FCM server",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Dyan Galih",
-      "email": "dyan.galih@gmail.com"
-    }
-  ],
-  "minimum-stability": "dev",
-  "autoload": {
-    "psr-4": {
-      "WebAppId\\Fcm\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "WebAppId\\Fcm\\Tests\\": "src/tests"
-    }
-  },
-  "require": {
-    "php" : ">=7.2.0",
-    "illuminate/support": "^7.0|^8.0",
-    "doctrine/dbal": "^2.5",
-    "guzzlehttp/guzzle": "^6.3",
-    "webappid/laravel-ddd": "^1.3",
-    "ext-json": "*",
-    "webappid/laravel-user": "^4.0",
-    "webappid/lazy": "^1.6"
-  },
-  "require-dev": {
-    "phpunit/phpunit" : "7.2.6|^8.0.0"
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.0-dev"
+    "name": "webappid/laravel-fcm",
+    "description": "Laravel FCM server",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dyan Galih",
+            "email": "dyan.galih@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "files": [
+            "src/Helper/helpers.php"
+        ],
+        "psr-4": {
+            "WebAppId\\Fcm\\": "src"
+        }
     },
-    "laravel": {
-      "providers": [
-        "WebAppId\\Fcm\\ServiceProvider"
-      ],
-      "aliases": {
-        "FCM" : "WebAppId\\Fcm\\Facade"
-      }
+    "autoload-dev": {
+        "psr-4": {
+            "WebAppId\\Fcm\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": ">=7.2.0",
+        "illuminate/support": "^7.0|^8.0",
+        "doctrine/dbal": "^2.5",
+        "guzzlehttp/guzzle": "^6.3",
+        "webappid/laravel-ddd": "^1.3",
+        "ext-json": "*",
+        "webappid/laravel-user": "^4.0",
+        "webappid/lazy": "^1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7.2.6|^8.0.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "WebAppId\\Fcm\\ServiceProvider"
+            ],
+            "aliases": {
+                "FCM": "WebAppId\\Fcm\\Facade"
+            }
+        }
     }
-  }
 }

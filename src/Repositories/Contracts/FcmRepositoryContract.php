@@ -8,7 +8,9 @@
 namespace WebAppId\Fcm\Repositories\Contracts;
 
 
+use Illuminate\Database\Eloquent\Collection;
 use WebAppId\Fcm\Models\FcmProject;
+use WebAppId\Fcm\Repositories\Requests\FcmRepositoryRequest;
 use WebAppId\Fcm\Services\Params\FcmSendParam;
 
 /**
@@ -19,34 +21,14 @@ use WebAppId\Fcm\Services\Params\FcmSendParam;
 interface FcmRepositoryContract
 {
     /**
-     * @param FcmSendParam $fcmSendParam
-     * @param array $data
-     * @param array $registrationIds
-     * @param FcmProject $fcmProject
-     * @return array
+     * @param string $serverKey
+     * @param string $url
+     * @param FcmRepositoryRequest $fcmRepositoryRequest
+     * @param Collection $serverKeys
+     * @return string
      */
-    public function sendBlast(FcmSendParam $fcmSendParam,
-                              array $registrationIds,
-                              FcmProject $fcmProject,
-                              array $data): array;
-    
-    /**
-     * @param FcmSendParam $fcmSendParam
-     * @param string $topic
-     * @param FcmProject $fcmProject
-     * @param array $data
-     * @return array
-     */
-    public function sendToTopic(FcmSendParam $fcmSendParam,
-                                string $topic,
-                                FcmProject $fcmProject,
-                                array $data = []): array;
-    
-    /**
-     * @param string $token
-     * @param string $topic
-     * @param FcmProject $fcmProject
-     * @return array
-     */
-    public function subscribeTopic(string $token, string $topic, FcmProject $fcmProject): array;
+    public function sendFcm(string $serverKey,
+                            string $url,
+                            FcmRepositoryRequest $fcmRepositoryRequest,
+                            Collection $serverKeys): string;
 }
