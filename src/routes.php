@@ -18,6 +18,9 @@ Route::name('lazy.')->group(function () {
                 Route::post('/store', WebAppId\Fcm\Controllers\FcmSubscribes\FcmSubscribeStoreController::class)->name('store');
                 Route::post('/update', WebAppId\Fcm\Controllers\FcmSubscribes\FcmSubscribeUpdateController::class)->name('update');
             });
+            Route::name('notification.')->prefix('notification')->group(function() {
+                Route::get('/', WebAppId\Fcm\Controllers\Notifications\NotificationIndexController::class)->name('index');
+            });
         });
     });
 });
