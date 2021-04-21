@@ -1,45 +1,74 @@
 <?php
 /**
- * Author: galih
- * Date: 2019-05-17
- * Time: 18:23
+ * Created by LazyCrud - @DyanGalih <dyan.galih@gmail.com>
  */
 
 namespace WebAppId\Fcm\Services;
 
-
-use WebAppId\DDD\Services\BaseService;
+use Illuminate\Support\Facades\Auth;
 use WebAppId\Fcm\Repositories\FcmSubscribeRepository;
-use WebAppId\Fcm\Responses\FcmSubscribeResponse;
+use WebAppId\Fcm\Repositories\Requests\FcmSubscribeRepositoryRequest;
 use WebAppId\Fcm\Services\Contracts\FcmSubscribeServiceContract;
-use WebAppId\Fcm\Services\Params\FcmSubscribeParam;
+use WebAppId\Fcm\Services\Requests\FcmSubscribeServiceRequest;
+use WebAppId\Fcm\Services\Responses\FcmSubscribeServiceResponse;
+use WebAppId\Lazy\Tools\Lazy;
 
 /**
- * @author: Dyan Galih<dyan.galih@gmail.com> https://dyangalih.com
+ * @author:
+ * Date: 04:26:02
+ * Time: 2021/04/18
  * Class FcmSubscribeService
  * @package WebAppId\Fcm\Services
  */
-class FcmSubscribeService extends BaseService implements FcmSubscribeServiceContract
+class FcmSubscribeService implements FcmSubscribeServiceContract
 {
-    
+    use FcmSubscribeServiceTrait {
+        store as baseStore;
+    }
+
     /**
-     * @param FcmSubscribeParam $fcmSubscribeParam
+     * @param FcmSubscribeServiceRequest $fcmSubscribeServiceRequest
+     * @param FcmSubscribeRepositoryRequest $fcmSubscribeRepositoryRequest
      * @param FcmSubscribeRepository $fcmSubscribeRepository
-     * @param FcmSubscribeResponse $fcmSubscribeResponse
-     * @return FcmSubscribeResponse
+     * @param FcmSubscribeServiceResponse $fcmSubscribeServiceResponse
+     * @return FcmSubscribeServiceResponse
      */
-    public function store(FcmSubscribeParam $fcmSubscribeParam, FcmSubscribeRepository $fcmSubscribeRepository, FcmSubscribeResponse $fcmSubscribeResponse): FcmSubscribeResponse
+    public function store(FcmSubscribeServiceRequest $fcmSubscribeServiceRequest,
+                          FcmSubscribeRepositoryRequest $fcmSubscribeRepositoryRequest,
+                          FcmSubscribeRepository $fcmSubscribeRepository,
+                          FcmSubscribeServiceResponse $fcmSubscribeServiceResponse): FcmSubscribeServiceResponse
     {
-        $result = $this->getContainer()->call([$fcmSubscribeRepository, 'store'], ['fcmSubscribeParam' => $fcmSubscribeParam]);
-        if ($result != null) {
-            $fcmSubscribeResponse->setStatus(true);
-            $fcmSubscribeResponse->setMessage('Save Subscribe Success');
-            $fcmSubscribeResponse->setFcmSubscribe($result);
-        } else {
-            $fcmSubscribeResponse->setStatus(false);
-            $fcmSubscribeResponse->setMessage('Save Subscribe Failed');
+        $currentToken = app()->call([$fcmSubscribeRepository, 'getByToken'], ['token' => $fcmSubscribeServiceRequest->token]);
+
+        if ($currentToken != null) {
+            if ($currentToken->user_id == Auth::id()) {
+                $fcmSubscribeServiceResponse->status = false;
+                $fcmSubscribeServiceResponse->message = "Token Already Registered";
+                return $fcmSubscribeServiceResponse;
+            } else {
+                $fcmSubscribeRepositoryRequest = Lazy::transform($currentToken, $fcmSubscribeRepositoryRequest);
+                $fcmSubscribeRepositoryRequest->user_id = Auth::id();
+                $fcmSubscribeRepositoryRequest->owner_id = Auth::id();
+                $fcmSubscribeRepositoryRequest->creator_id = Auth::id();
+                $update = app()->call([$fcmSubscribeRepository, 'update'], ['id' => $currentToken->id, 'fcmSubscribeRepositoryRequest' => $fcmSubscribeRepositoryRequest]);
+                if($update == null){
+                    $fcmSubscribeServiceResponse->status = false;
+                    $fcmSubscribeServiceResponse->message = "Update Token Failed";
+                    return $fcmSubscribeServiceResponse;
+                }else{
+                    $fcmSubscribeServiceResponse->status = true;
+                    $fcmSubscribeServiceResponse->message = "Update Token Successed";
+                    return $fcmSubscribeServiceResponse;
+                }
+            }
         }
-        
-        return $fcmSubscribeResponse;
+
+        return $this->baseStore(
+            $fcmSubscribeServiceRequest,
+            $fcmSubscribeRepositoryRequest,
+            $fcmSubscribeRepository,
+            $fcmSubscribeServiceResponse
+        );
+
     }
 }

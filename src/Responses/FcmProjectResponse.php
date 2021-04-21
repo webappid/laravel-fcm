@@ -1,37 +1,35 @@
 <?php
-
+/**
+ * Created by LazyCrud - @DyanGalih <dyan.galih@gmail.com>
+ */
 
 namespace WebAppId\Fcm\Responses;
 
-
-use WebAppId\DDD\Responses\AbstractResponse;
-use WebAppId\Fcm\Models\FcmProject;
-
 /**
- * @author: Dyan Galih<dyan.galih@gmail.com> https://dyangalih.com
- * Class FcmProjectResponse
+ * @author:
+ * Date: 02:08:14
+ * Time: 2021/04/18
+ * Class FcmProjectRepositoryRequest
  * @package WebAppId\Fcm\Responses
  */
-class FcmProjectResponse extends AbstractResponse
+class FcmProjectResponse
 {
+
     /**
-     * @var FcmProject
+     * @var string
      */
-    private $fcmProject;
-    
+    public $name;
+
+
     /**
-     * @return FcmProject
+     * @var string
      */
-    public function getFcmProject(): FcmProject
-    {
-        return $this->fcmProject;
-    }
-    
+    public $server_key;
+
+
     /**
-     * @param FcmProject $fcmProject
+     * @var string
      */
-    public function setFcmProject(FcmProject $fcmProject): void
-    {
-        $this->fcmProject = $fcmProject;
-    }
+    public $user_name;
+
 }

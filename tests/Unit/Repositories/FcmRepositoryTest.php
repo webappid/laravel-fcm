@@ -10,9 +10,7 @@ namespace WebAppId\Fcm\Tests\Unit\Repositories;
 use WebAppId\Fcm\Models\FcmProject;
 use WebAppId\Fcm\Repositories\FcmProjectRepository;
 use WebAppId\Fcm\Repositories\FcmRepository;
-use WebAppId\Fcm\Services\Params\FcmSendParam;
-use WebAppId\Fcm\Services\Params\FcmSubscribeParam;
-use WebAppId\Fcm\Services\Params\ProjectParam;
+use WebAppId\Fcm\Services\Requests\FcmSendServiceRequest;
 use WebAppId\Fcm\Tests\TestCase;
 
 class FcmRepositoryTest extends TestCase
@@ -34,14 +32,14 @@ class FcmRepositoryTest extends TestCase
         parent::__construct($name, $data, $dataName);
     }
     
-    public function dummy(): FcmSendParam
+    public function dummy(): FcmSendServiceRequest
     {
-        $fcmSendParam = new FcmSendParam();
-        $fcmSendParam->setTitle($this->getFaker()->title);
-        $fcmSendParam->setBody($this->getFaker()->text(200));
-        $fcmSendParam->setUrlAction($this->getFaker()->url);
-        $fcmSendParam->setIcon($this->getFaker()->imageUrl());
-        return $fcmSendParam;
+        $fcmSendServiceRequest = new FcmSendServiceRequest();
+        $fcmSendServiceRequest->title = $this->getFaker()->title;
+        $fcmSendServiceRequest->body = $this->getFaker()->text(200);
+        $fcmSendServiceRequest->url_action = $this->getFaker()->url;
+        $fcmSendServiceRequest->icon = $this->getFaker()->name;
+        return $fcmSendServiceRequest;
     }
     
     public function dummyClient(): void
@@ -59,8 +57,8 @@ class FcmRepositoryTest extends TestCase
     
     public function dummyProjectKey(): FcmProject
     {
-        $serverKey = 'AAAAWktC7mo:APA91bETc1zEcJ0YXrOeNcMkJ1deRba_CwsEOBi4Igbehxn7PQNHPfbPpZ1d_JJjYfPk4VHZxueSWAMhfv3eYBenwrpI2VzoHz3ECtieXr3oPf1Cuehpa9eye5kZp5d0HnwGa0Jd2GhV';
-        $projectName = 'gost-protocol';
+        $serverKey = '';
+        $projectName = '';
         $projectParam = new ProjectParam();
         $projectParam->setName($projectName);
         $projectParam->setUserId('1');
@@ -71,7 +69,7 @@ class FcmRepositoryTest extends TestCase
     public function dummyBlastClient(): array
     {
         $registration_ids = [];
-        $registration_ids[] = 'esc2gettCBk:APA91bHoZBmXfgb3SRs30rmoVbSTEi4pU-XFMDEMFDdYe8s67ypMt7Wgyv2IpJ_dMHv9KtYr5sfbP3SfJuooKkLk3gpd-9vZNZ-fr5F9lm2ahBmJkW4_Y8tfqIHAsOxpV5pQPWFl1hPB';
+        $registration_ids[] = '';
         return $registration_ids;
     }
     
