@@ -20,45 +20,48 @@ use WebAppId\Fcm\Responses\FcmResponse;
 use WebAppId\Fcm\Services\Contracts\FcmServiceContract;
 use WebAppId\Fcm\Services\Params\FcmSendParam;
 use WebAppId\Fcm\Services\Requests\FcmSendServiceRequest;
-use WebAppId\Lazy\Tools\Lazy;
 
 class FcmService extends BaseService implements FcmServiceContract
 {
 
     /**
+     * @param int $id
      * @param FcmSendServiceRequest $fcmSendServiceRequest
-     * @param FcmRepositoryRequest $fcmRepositoryRequest
      * @param FcmRepository $fcmRepository
      * @param FcmSubscribeRepository $fcmSubscribeRepository
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @param FcmLogRepository $fcmLogRepository
      */
     public function send(
-        int $id, 
+        int $id,
         FcmSendServiceRequest $fcmSendServiceRequest,
-        FcmRepositoryRequest $fcmRepositoryRequest,
         FcmRepository $fcmRepository,
         FcmSubscribeRepository $fcmSubscribeRepository,
         FcmLogRepository $fcmLogRepository
     )
     {
         $services = app()->call([$fcmSubscribeRepository, 'getByOwnerUserIdList'], compact('id'));
-        foreach ($services as $service) {
-            $fcmRepositoryRequest = app()->make(FcmRepositoryRequest::class);
-            $fcmRepositoryRequest->registration_ids[] = $service->token;
-            $fcmRepositoryRequest = Lazy::transform($fcmSendServiceRequest, $fcmRepositoryRequest);
-            
-            $result = app()->call([$fcmRepository, 'sendFcm'], [
-                "serverKey" => $service->server_key,
-                "url" => Fcm::URL,
-                "fcmRepositoryRequest" => $fcmRepositoryRequest
-            ]);
+        if (count($services) > 0) {
+            foreach ($services as $service) {
+                $fcmRepositoryRequest = app()->make(FcmRepositoryRequest::class);
+                $fcmRepositoryRequest->registration_ids[] = $service->token;
+                $fcmRepositoryRequest->notification = $fcmSendServiceRequest->notification;
+                $fcmRepositoryRequest->datas = $fcmSendServiceRequest->datas;
 
-            $fcmLogRepositoryRequest = app()->make(FcmLogRepositoryRequest::class);
-            $fcmLogRepositoryRequest->user_id = Auth::id();
-            $fcmLogRepositoryRequest->request = json_encode($fcmRepositoryRequest);
-            $fcmLogRepositoryRequest->response = $result;
-            $fcmLogRepositoryRequest->fcm_subscribe_id = $service->fcm_subscribe_id;
-            app()->call([$fcmLogRepository, 'store'], compact('fcmLogRepositoryRequest'));
+                $result = app()->call([$fcmRepository, 'sendFcm'], [
+                    "serverKey" => $service->server_key,
+                    "url" => Fcm::URL,
+                    "fcmRepositoryRequest" => $fcmRepositoryRequest
+                ]);
+
+                if ($service->id != null) {
+                    $fcmLogRepositoryRequest = app()->make(FcmLogRepositoryRequest::class);
+                    $fcmLogRepositoryRequest->user_id = Auth::id();
+                    $fcmLogRepositoryRequest->request = json_encode($fcmRepositoryRequest);
+                    $fcmLogRepositoryRequest->response = $result;
+                    $fcmLogRepositoryRequest->fcm_subscribe_id = $service->id;
+                    app()->call([$fcmLogRepository, 'store'], compact('fcmLogRepositoryRequest'));
+                }
+            }
         }
     }
 
