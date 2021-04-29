@@ -25,7 +25,6 @@ if (!function_exists('pushNotify')) {
         $notify->url_action = $urlAction;
         $notify->body = $body;
         $notify->title = $title;
-        $fcmService = app()->make(FcmService::class);
         $notify->icon = $icon;
 
         $fcmSendServiceRequest = app()->make(FcmSendServiceRequest::class);
