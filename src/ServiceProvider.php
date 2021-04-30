@@ -3,7 +3,6 @@
 namespace WebAppId\Fcm;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use WebAppId\Fcm\Commands\SeedCommand;
 
 /**
  * @author: Dyan Galih<dyan.galih@gmail.com> https://dyangalih.com
@@ -12,10 +11,6 @@ use WebAppId\Fcm\Commands\SeedCommand;
  */
 class ServiceProvider extends BaseServiceProvider
 {
-    public function register()
-    {
-        $this->commands(SeedCommand::class);
-    }
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/migrations');
