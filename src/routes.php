@@ -4,7 +4,7 @@
  */
 
 Route::name('lazy.')->group(function () {
-    Route::group(['middleware' => 'web'], function () {
+    Route::group(['middleware' => ['web', 'auth']], function () {
         Route::name('admin.')->prefix('admin')->group(function () {
             Route::name('fcm-project.')->prefix('fcm-project')->group(function () {
                 Route::get('/project', WebAppId\Fcm\Controllers\FcmProjects\FcmProjectIndexController::class)->name('index');
