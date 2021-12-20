@@ -5,7 +5,6 @@
 
 namespace WebAppId\Fcm\Services;
 
-use WebAppId\Fcm\Services\Contracts\NotificationServiceContract;
 use WebAppId\Fcm\Services\NotificationServiceTrait;
 
 /**
@@ -15,7 +14,7 @@ use WebAppId\Fcm\Services\NotificationServiceTrait;
  * Class NotificationService
  * @package WebAppId\Fcm\Services
  */
-class NotificationService implements NotificationServiceContract
+class NotificationService
 {
     use NotificationServiceTrait;
 }

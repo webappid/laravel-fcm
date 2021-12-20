@@ -5,7 +5,6 @@
 
 namespace WebAppId\Fcm\Repositories;
 
-use WebAppId\Fcm\Repositories\Contracts\FcmProjectRepositoryContract;
 use WebAppId\Fcm\Repositories\FcmProjectRepositoryTrait;
 
 /**
@@ -15,7 +14,7 @@ use WebAppId\Fcm\Repositories\FcmProjectRepositoryTrait;
  * Class FcmProjectRepository
  * @package WebAppId\Fcm\Repositories
  */
-class FcmProjectRepository implements FcmProjectRepositoryContract
+class FcmProjectRepository
 {
     use FcmProjectRepositoryTrait;
 

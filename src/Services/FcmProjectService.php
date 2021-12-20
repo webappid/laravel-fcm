@@ -5,7 +5,6 @@
 
 namespace WebAppId\Fcm\Services;
 
-use WebAppId\Fcm\Services\Contracts\FcmProjectServiceContract;
 use WebAppId\Fcm\Services\FcmProjectServiceTrait;
 
 /**
@@ -15,7 +14,7 @@ use WebAppId\Fcm\Services\FcmProjectServiceTrait;
  * Class FcmProjectService
  * @package WebAppId\Fcm\Services
  */
-class FcmProjectService implements FcmProjectServiceContract
+class FcmProjectService
 {
     use FcmProjectServiceTrait;
 }

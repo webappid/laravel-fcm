@@ -17,11 +17,10 @@ use WebAppId\Fcm\Repositories\FcmSubscribeRepository;
 use WebAppId\Fcm\Repositories\Requests\FcmLogRepositoryRequest;
 use WebAppId\Fcm\Repositories\Requests\FcmRepositoryRequest;
 use WebAppId\Fcm\Responses\FcmResponse;
-use WebAppId\Fcm\Services\Contracts\FcmServiceContract;
 use WebAppId\Fcm\Services\Params\FcmSendParam;
 use WebAppId\Fcm\Services\Requests\FcmSendServiceRequest;
 
-class FcmService extends BaseService implements FcmServiceContract
+class FcmService extends BaseService
 {
 
     /**

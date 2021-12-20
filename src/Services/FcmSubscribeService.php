@@ -8,7 +8,6 @@ namespace WebAppId\Fcm\Services;
 use Illuminate\Support\Facades\Auth;
 use WebAppId\Fcm\Repositories\FcmSubscribeRepository;
 use WebAppId\Fcm\Repositories\Requests\FcmSubscribeRepositoryRequest;
-use WebAppId\Fcm\Services\Contracts\FcmSubscribeServiceContract;
 use WebAppId\Fcm\Services\Requests\FcmSubscribeServiceRequest;
 use WebAppId\Fcm\Services\Responses\FcmSubscribeServiceResponse;
 use WebAppId\Lazy\Tools\Lazy;
@@ -20,7 +19,7 @@ use WebAppId\Lazy\Tools\Lazy;
  * Class FcmSubscribeService
  * @package WebAppId\Fcm\Services
  */
-class FcmSubscribeService implements FcmSubscribeServiceContract
+class FcmSubscribeService
 {
     use FcmSubscribeServiceTrait {
         store as baseStore;

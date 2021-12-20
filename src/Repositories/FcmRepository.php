@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Collection;
 use WebAppId\DDD\Tools\PopoTools;
 use WebAppId\Fcm\Models\Fcm;
 use WebAppId\Fcm\Models\FcmProject;
-use WebAppId\Fcm\Repositories\Contracts\FcmRepositoryContract;
 use WebAppId\Fcm\Repositories\Requests\FcmRepositoryRequest;
 use WebAppId\Fcm\Services\Params\FcmSendParam;
 
@@ -22,7 +21,7 @@ use WebAppId\Fcm\Services\Params\FcmSendParam;
  * Class FcmRepository
  * @package WebAppId\Fcm\Repositories
  */
-class FcmRepository implements FcmRepositoryContract
+class FcmRepository
 {
     /**
      * @param string $serverKey

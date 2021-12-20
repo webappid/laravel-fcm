@@ -5,7 +5,6 @@
 
 namespace WebAppId\Fcm\Repositories;
 
-use WebAppId\Fcm\Repositories\Contracts\FcmLogRepositoryContract;
 use WebAppId\Fcm\Repositories\FcmLogRepositoryTrait;
 
 /**
@@ -15,7 +14,7 @@ use WebAppId\Fcm\Repositories\FcmLogRepositoryTrait;
  * Class FcmLogRepository
  * @package WebAppId\Fcm\Repositories
  */
-class FcmLogRepository implements FcmLogRepositoryContract
+class FcmLogRepository
 {
     use FcmLogRepositoryTrait;
 

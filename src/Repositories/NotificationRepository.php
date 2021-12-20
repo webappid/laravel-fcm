@@ -5,7 +5,6 @@
 
 namespace WebAppId\Fcm\Repositories;
 
-use WebAppId\Fcm\Repositories\Contracts\NotificationRepositoryContract;
 use WebAppId\Fcm\Repositories\NotificationRepositoryTrait;
 
 /**
@@ -15,7 +14,7 @@ use WebAppId\Fcm\Repositories\NotificationRepositoryTrait;
  * Class NotificationRepository
  * @package WebAppId\Fcm\Repositories
  */
-class NotificationRepository implements NotificationRepositoryContract
+class NotificationRepository
 {
     use NotificationRepositoryTrait;
 
